@@ -1,0 +1,4 @@
+# Project exclude paths
+/target/
+/Diplompruefung_SWE2.iml
+/.idea/

@@ -2,52 +2,55 @@ package ch.juventus.service;
 
 import ch.juventus.database.Database;
 import ch.juventus.helper.TestDataProvider;
-import ch.juventus.model.Apartment;
 import ch.juventus.model.Property;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
+@RunWith(JUnitPlatform.class)
 class PropertyServiceTest {
 
+    @Mock
+    private Database database;
     private PropertyService propertyService;
 
     @BeforeEach
     public void setup() {
-        propertyService = new PropertyService();
+        propertyService = new PropertyService(database);
     }
 
     @Test
     void testGetAllProperties() {
-        try (MockedStatic<Database> mockedLocalDateTime = Mockito.mockStatic(Database.class)) {
-            // given
-            mockedLocalDateTime.when(Database::allProperties).thenReturn(TestDataProvider.propertyList());
+        // Given
+        when(database.getAllProperties()).thenReturn(TestDataProvider.propertyList());
 
-            // when
-            List<Property> properties = propertyService.getAllProperties();
+        // When
+        List<Property> properties = propertyService.getAllProperties();
 
-            // then
-            assertEquals(6, properties.size());
-        }
+        // Then
+        assertEquals(6, properties.size());
     }
 
     @Test
     void testGetAllPropertiesWithEmptyList() {
-        try (MockedStatic<Database> mockedLocalDateTime = Mockito.mockStatic(Database.class)) {
-            // given
-            mockedLocalDateTime.when(Database::allProperties).thenReturn(TestDataProvider.emptyList());
+        // Given
+        when(database.getAllProperties()).thenReturn(TestDataProvider.emptyList());
 
-            // when
-            List<Property> properties = propertyService.getAllProperties();
+        // When
+        List<Property> properties = propertyService.getAllProperties();
 
-            // then
-            assertEquals(0, properties.size());
-        }
+        // Then
+        assertEquals(0, properties.size());
     }
 
 }

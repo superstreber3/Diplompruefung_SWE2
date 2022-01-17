@@ -9,7 +9,11 @@ import java.util.Map;
 
 public class Database {
 
-    public static List<Property> allProperties() {
+    private static Database INSTANCE;
+    private final List<Property> properties;
+
+    private Database() {
+
         Address address1 = new Address("Feldblumenstrasse", 40, "Altstetten", 8048);
         List<Apartment> apartments1 = List.of(
                 new Apartment(Map.of("Bathroom", 2, "Livingroom", 1, "Bedroom", 3)),
@@ -37,6 +41,17 @@ public class Database {
         );
         Property property3 = new Property(address3, apartments3);
 
-        return List.of(property1, property2, property3);
+        properties = List.of(property1, property2, property3);
+    }
+
+    public static Database getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Database();
+        }
+        return INSTANCE;
+    }
+
+    public List<Property> getAllProperties() {
+        return properties;
     }
 }

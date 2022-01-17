@@ -9,8 +9,14 @@ import java.util.List;
 
 public class PropertyService {
 
+    private final Database database;
+
+    public PropertyService(Database database) {
+        this.database = database;
+    }
+
     public List<Property> getAllProperties() {
-        return Database.allProperties();
+        return database.getAllProperties();
     }
 
     public List<Apartment> getAllFreeApartments() {

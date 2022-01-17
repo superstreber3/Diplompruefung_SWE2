@@ -1,11 +1,12 @@
 package ch.juventus.reporting;
 
+import ch.juventus.database.Database;
 import ch.juventus.service.PropertyService;
 
 
 public class ReportPrinter {
 
-    private static final PropertyService propertyService = new PropertyService();
+    private static final PropertyService propertyService = new PropertyService(Database.getInstance());
 
     public static void printAllProperties() {
         propertyService.getAllProperties().forEach(System.out::println);

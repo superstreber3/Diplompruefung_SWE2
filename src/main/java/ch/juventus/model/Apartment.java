@@ -19,4 +19,8 @@ public class Apartment {
     public void setRented(boolean rented) {
         this.rented = rented;
     }
+
+    public Map<String, Integer> getRooms() {
+        return rooms;
+    }
 }

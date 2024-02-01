@@ -39,7 +39,7 @@ public class TestDataProvider {
         List<Apartment> apartments2 = List.of(
                 new Apartment(Map.of("Bathroom", 2, "Livingroom", 1, "Bedroom", 2), false),
                 new Apartment(Map.of("Bathroom", 1, "Livingroom", 1, "Bedroom", 1), false),
-                new Apartment(Map.of("Bathroom", 1, "Livingroom", 1, "Bedroom", 1), false),
+                new Apartment(Map.of("Bathroom", 1, "Livingroom", 1, "Bedroom", 1), true),
                 new Apartment(Map.of("Bathroom", 2, "Livingroom", 1, "Bedroom", 3), false)
         );
         Property property2 = new Property(address2, apartments2);
@@ -47,7 +47,7 @@ public class TestDataProvider {
         Address address3 = new Address("Heimstrasse", 8, "Dietikon", 8953);
         List<Apartment> apartments3 = List.of(
                 new Apartment(Map.of("Bathroom", 2, "Livingroom", 1, "Bedroom", 2), false),
-                new Apartment(Map.of("Bathroom", 1, "Livingroom", 1, "Bedroom", 1), false),
+                new Apartment(Map.of("Bathroom", 1, "Livingroom", 1, "Bedroom", 1), true),
                 new Apartment(Map.of("Bathroom", 1, "Livingroom", 1, "Bedroom", 1), false),
                 new Apartment(Map.of("Bathroom", 2, "Livingroom", 1, "Bedroom", 4), false)
         );
